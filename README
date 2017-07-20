@@ -11,5 +11,5 @@ http://bentiss.github.io/hid-replay-docs/
 
 This is mainly for debugging kernel drivers. If your goal
 is just to replay events, have a look at evemu:
-http://wiki.freedesktop.org/wiki/Evemu
+https://wiki.freedesktop.org/www/Evemu/
 
