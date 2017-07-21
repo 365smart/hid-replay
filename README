@@ -11,5 +11,47 @@ http://bentiss.github.io/hid-replay-docs/
 
 This is mainly for debugging kernel drivers. If your goal
 is just to replay events, have a look at evemu:
-http://wiki.freedesktop.org/wiki/Evemu
+https://www.freedesktop.org/wiki/Evemu/
 
+## Setup
+
+Tested on Ubuntu 14.04
+
+```
+git clone https://github.com/365smart/hid-replay.git
+cd hid-replay
+git checkout 0.7.1-record-timestamp
+
+bash
+./autogen.sh
+./configure --prefix=/usr
+make && sudo make install
+```
+
+```
+$ sudo hid-recorder
+Available devices:
+/dev/hidraw0:	Mag-Tek USB Swipe Reader
+/dev/hidraw1:	Weid weid
+/dev/hidraw2:	USB Keyboard
+/dev/hidraw3:	USB Keyboard
+/dev/hidraw4:	IDTECH IDTECH MiniMag II USB-HID Keyboard Reader
+Select the device event number [0-4]:
+
+Ctrl+c
+```
+
+Run in background as root:
+```
+$ sudo su
+
+# nohup hid-recorder /dev/hidraw1 2>&1 > touchdevice.hid &
+[1] 7490
+# nohup: ignoring input and redirecting stderr to stdout
+
+# ps -ef | grep hid-recorder
+root      7490  6787  0 19:38 pts/9    00:00:00 hid-recorder /dev/hidraw1
+```
+
+If everything went fine, the terminal should display a lot of lines starting with 'E:' and followed by a lot of hexadecimal values.
+Add Comment Collapse
