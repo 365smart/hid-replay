@@ -335,10 +335,10 @@ static void print_currenttime(struct timeval *starttime)
 	struct timeval currenttime;
 	if (!starttime->tv_sec && !starttime->tv_usec)
 		gettimeofday(starttime, NULL);
-//	gettimeofday(&currenttime, NULL);
+	gettimeofday(&currenttime, NULL);
 //	timeval_subtract(&currenttime, &currenttime, starttime);
 
-	printf("%lu.%06u", starttime->tv_sec, (unsigned)starttime->tv_usec);
+	printf("%lu.%06u", currenttime.tv_sec, (unsigned)currenttime.tv_usec);
 }
 
 static int read_hiddbg_event(struct hid_recorder_device *device)
