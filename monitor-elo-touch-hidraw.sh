@@ -44,5 +44,9 @@ if [[ ! -e ${ELO_HIDRAW} ]]; then
     exit 2
 fi
 
-kill_all_hid_recorder
-start_hid_recorder
+if [[ $1 == '--stop' ]]; then
+    kill_all_hid_recorder
+else
+    kill_all_hid_recorder
+    start_hid_recorder
+fi
